@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cashtoutiao.statistic.statistic.bean.AdminDailyOwnStatisticRecord">
+
+	<sql id="allColumns">
+		id,
+		day,
+		type,
+		sub_type as subType,
+		value
+	</sql>
+	
+	<select id="getValue" resultType="com.cashtoutiao.statistic.statistic.bean.AdminDailyOwnStatisticRecord">
+		select <include refid="allColumns"/> from admin_daily_own_statistic_record where day >= #{day} and type = #{type} and  sub_type = #{subType}
+	</select>
+	
+	<select id="getCashback" resultType="com.cashtoutiao.statistic.common.bean.ReceiveRecord">
+		select day, sum(value) as value from admin_daily_own_statistic_record where day >= #{day} and type = "daily_credit_obtain" group by day
+	</select>
+	
+	<select id="getInviteExpense" resultType="com.cashtoutiao.statistic.common.bean.ReceiveRecord">
+		SELECT day, sum(value) as value FROM
+			admin_daily_own_statistic_record 
+		where
+			day >= #{day} and 
+		type = 'daily_credit_obtain' and sub_type in
+		('source_100','source_122','source_123','source_105') group by day;
+	</select>
+	
+</mapper>  

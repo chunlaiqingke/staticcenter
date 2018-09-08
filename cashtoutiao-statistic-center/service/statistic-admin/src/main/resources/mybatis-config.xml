@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">  
+<configuration>
+    <mappers>
+    	<!-- admin -->
+    	<mapper resource="mapper/statistic-admin-user-info-mapper.xml"/>
+    	<mapper resource="mapper/statistic-admin-user-role-mapper.xml"/>
+    	<mapper resource="mapper/statistic-admin-role-info-mapper.xml"/>
+    	<mapper resource="mapper/statistic-admin-menu-info-mapper.xml"/>
+    	<mapper resource="mapper/statistic-admin-role-menu-mapper.xml"/>
+    	
+    	<mapper resource="mapper/admin-daily-own-statistic-record-mapper.xml"/>
+    	<mapper resource="mapper/user-daily-task-mapper.xml"/>
+    	<mapper resource="mapper/user-info-mapper.xml"/>
+    	<mapper resource="mapper/user-invite-info-mapper.xml"/>
+    	<mapper resource="mapper/order-info-mapper.xml"/>
+    	<mapper resource="mapper/user-sign-record-mapper.xml"/>
+    </mappers>
+</configuration>

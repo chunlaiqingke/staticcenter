@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.cashtoutiao.statistic.mall.bean.OrderInfo">
+	
+	<select id="getTotalWithdrawByDay" resultType="com.cashtoutiao.statistic.common.bean.ReceiveRecord">
+		SELECT DATE(create_time) as day,SUM(original_price/100) as value,COUNT(original_price) as count
+		FROM order_info
+		where 
+		<![CDATA[
+			create_time >= #{start} and create_time < #{end} and state=21  and product_category in (1001001,1002001,1002002)
+		]]>
+	</select>
+</mapper>

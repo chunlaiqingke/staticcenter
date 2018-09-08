@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>菜单权限</title>
+    <link rel="stylesheet" href="../plugins/layui/css/layui.css" media="all">
+    <link rel="stylesheet" href="../build/css/doc.css" media="all">
+</head>
+
+<body>
+	<body>
+
+	<table class="layui-hide" id="role_menu"></table>
+	<script type="text/html" id="checkboxTpl">
+  		<input type="checkbox" name="permitted" value="{{d.permitted}}" title="允许" lay-filter="permittted" {{d.permitted == true ? 'checked' : ''}}>
+	</script>
+	
+    <script src="../plugins/layui/layui.all.js"></script>
+</body>
+	<script type="text/javascript" src="role_menu.js"></script>
+</html>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.cashtoutiao.statistic.task.bean.response.DailyTask">
+	
+	<sql id="allColumns">
+		user_id as userId,
+		day,
+		task_id as taskId,
+		reward,
+		state
+	</sql>
+	
+	<select id="getDailyTaskReward" resultType="com.cashtoutiao.statistic.task.bean.TaskSummary">
+		select 
+			task_id as taskId,sum(reward) as value
+		from 
+			user_daily_task
+		where task_id in 
+		<foreach collection="taskIds" item="taskId" open="(" close=")" separator=",">
+			#{taskId}
+		</foreach>
+		 and day = #{day}
+		 group by task_id
+	</select>
+	
+	<select id="getTaskId" resultType="int">
+		select distinct task_id from user_daily_task where day = #{day}
+	</select>
+</mapper>

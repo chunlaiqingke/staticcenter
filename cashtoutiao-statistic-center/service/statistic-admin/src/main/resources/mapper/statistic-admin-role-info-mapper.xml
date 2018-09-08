@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.cashtoutiao.statistic.manager.bean.AdminRoleInfo">
+	
+	<sql id="allColumns">
+		id,
+		role_name as roleName,
+		role_desc as roleDesc,
+		weight
+	</sql>
+	
+	<select id="getRolePage" resultType="com.cashtoutiao.statistic.manager.bean.AdminRoleInfo">
+		select <include refid="allColumns"/> from statistic_admin_role_info order by id limit #{offset}, #{pageSize}
+	</select>
+	
+	<select id="getTotalCount" resultType="int">
+		select count(id) from statistic_admin_role_info
+	</select>
+</mapper>

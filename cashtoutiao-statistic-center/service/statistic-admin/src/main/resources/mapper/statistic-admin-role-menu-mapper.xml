@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.cashtoutiao.statistic.manager.bean.AdminRoleMenu">
+	
+	<sql id="allColumns">
+		id,
+		role_id as roleId,
+		menu_id as menuId
+	</sql>
+	
+	<select id="getMenuIdByRole" resultType="Integer">
+		select distinct menu_id from statistic_admin_role_menu where role_id in
+		<foreach collection="roleIds" item="roleId" open="(" close=")" separator=",">
+			#{roleId}
+		</foreach>
+	</select>
+	
+	<delete id="deleteByRole">
+		delete from statistic_admin_role_menu where role_id = #{roleId}
+	</delete>
+	
+	<insert id="saveList">
+		insert into statistic_admin_role_menu (role_id, menu_id)
+		values
+		<foreach collection="roleMenus" item="roleMenu" separator=",">
+			(#{roleMenu.roleId}, #{roleMenu.menuId})
+		</foreach>
+	</insert>
+</mapper>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.cashtoutiao.statistic.user.bean.UserInfo">
+	
+	<sql id="allColumns">
+		id,
+		phone,
+		state,
+		birthday,
+		register_time
+	</sql>
+	
+	<select id="getUserInfosByRegisterDay" resultType="com.cashtoutiao.statistic.user.bean.UserInfo">
+		select <include refid="allColumns"/> from user_info where date(register_time) = #{day}
+	</select>
+</mapper>
